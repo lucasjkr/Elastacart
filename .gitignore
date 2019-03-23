@@ -21,3 +21,5 @@ storage/upload/*
 !storage/upload/index.html
 storage/vendor/*
 !storage/vendor/index.html
+public/config.php
+public/admin/config.php
