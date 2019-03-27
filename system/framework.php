@@ -96,6 +96,18 @@ if ($config->get('db_autostart')) {
 	$db->query("SET time_zone = '" . $db->escape(date('P')) . "'");
 }
 
+
+$elasticsearch = new Elasticsearch\ClientBuilder();
+
+$elasticsearch = \Elasticsearch\ClientBuilder::create()
+    ->setHosts(['elasticsearch'])
+    ->setRetries(0)
+    ->build();
+
+$registry->set('elasticsearch', $elasticsearch);
+
+
+
 // Session
 $session = new Session($config->get('session_engine'), $registry);
 $registry->set('session', $session);
