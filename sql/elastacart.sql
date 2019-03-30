@@ -310,9 +310,9 @@ CREATE TABLE `cart` (
 DROP TABLE IF EXISTS `category`;
 
 CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` varchar(36) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `parent_id` varchar(36) NOT NULL DEFAULT '0',
   `top` tinyint(1) NOT NULL,
   `column` int(3) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
@@ -377,7 +377,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `category_description`;
 
 CREATE TABLE `category_description` (
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -442,7 +442,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `category_filter`;
 
 CREATE TABLE `category_filter` (
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -455,8 +455,8 @@ CREATE TABLE `category_filter` (
 DROP TABLE IF EXISTS `category_path`;
 
 CREATE TABLE `category_path` (
-  `category_id` int(11) NOT NULL,
-  `path_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
+  `path_id` varchar(36)  NOT NULL,
   `level` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`path_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -548,7 +548,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `category_to_layout`;
 
 CREATE TABLE `category_to_layout` (
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
@@ -562,7 +562,7 @@ CREATE TABLE `category_to_layout` (
 DROP TABLE IF EXISTS `category_to_store`;
 
 CREATE TABLE `category_to_store` (
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -937,7 +937,7 @@ DROP TABLE IF EXISTS `coupon_category`;
 
 CREATE TABLE `coupon_category` (
   `coupon_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   PRIMARY KEY (`coupon_id`,`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1451,7 +1451,7 @@ CREATE TABLE `customer_search` (
   `language_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `keyword` varchar(255) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   `sub_category` tinyint(1) NOT NULL,
   `description` tinyint(1) NOT NULL,
   `products` int(11) NOT NULL,
@@ -3128,7 +3128,7 @@ DROP TABLE IF EXISTS `product_to_category`;
 
 CREATE TABLE `product_to_category` (
   `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
   PRIMARY KEY (`product_id`,`category_id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
